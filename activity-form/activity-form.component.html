@@ -1,0 +1,60 @@
+<nb-card *ngIf="data">
+  <nb-card-header class="color text-right">
+    <span>
+      {{ title }}
+    </span>
+    <i
+			class="fa fa-close"
+			(click)="close()"
+			style="
+				font-size: 17px;
+				color: #ffc107;
+				margin-right: 20px;
+				cursor: pointer;
+				float: left;
+			"
+		></i>
+  </nb-card-header>
+  <nb-card-body >
+    <ag-grid-angular
+    style="width: 100%; height: 500px"
+    class="ag-theme-alpine"
+    [rowData]="rowData"
+    [gridOptions]="gridOption"
+    [enableRtl]="true"
+    [defaultColDef]="defaultColDef"
+    [frameworkComponents]="frameworkComponents"
+
+    (rowSelected)="onRowSelected($event)"
+    >
+  </ag-grid-angular>
+  <!-- [rowSelection]="rowSelection" -->
+
+    <!-- <div class="row text-right">
+      <div *ngFor="let item of all" class="col-xl-3 col-lg-3 col-md-3 col-sm-3">
+        <nb-checkbox
+          style="direction: rtl;"
+          status="basic"
+          [(ngModel)]="item.hasAccess"
+        >
+          {{ item.activityNationalName }}
+        </nb-checkbox>
+      </div>
+    </div> -->
+  </nb-card-body>
+  <nb-card-footer>
+    <button
+      nbButton
+      status="success"
+      type="submit"
+      value="Close"
+      stopPropagation
+      (click)="submitForm()"
+    >
+      {{ 'SUBMIT' | translate }}
+    </button>
+    <button nbButton status="danger" value="Close" (click)="close()">
+      {{ 'CANCELL' | translate }}
+    </button>
+  </nb-card-footer>
+</nb-card>
